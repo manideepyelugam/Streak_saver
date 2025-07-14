@@ -8,7 +8,9 @@ const Dashboard = () => {
   const [searchParams] = useSearchParams();
   const login = searchParams.get("login");
   const [user, setUser] = useState(null);
+  const [commit,setCommit] = useState([])
   const navigate = useNavigate();
+
 
   useEffect(() => {
     if (login) {
@@ -20,6 +22,19 @@ const Dashboard = () => {
   }, [login]);
 
 
+  useEffect(() => {
+    const fetchCommits = async () => {
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/start/${login}/getUpdates`);
+        setCommit(res.data.commitTimestamps); // fixed: use res.data
+      } catch (err) {
+        console.error("Failed to fetch commits", err);
+      }
+    };
+  
+    if (login) fetchCommits();
+  }, [login]); // only refetch when login changes
+  
 
   const logout = () => {
         try {
@@ -40,6 +55,7 @@ const Dashboard = () => {
   }
 
 
+
   const save = async() => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/start/${login}`)
@@ -48,6 +64,9 @@ const Dashboard = () => {
       console.log(error)
     }
   }
+
+
+  
 
 
   if (!login) return <p>No login found in URL</p>;
@@ -66,6 +85,19 @@ const Dashboard = () => {
       <button onClick={() => logout()}>Logout</button>
 
       <button onClick={() => save()}>Start Saver</button>
+
+
+      <div>
+  <h3>Recent Commits:</h3>
+  {commit.length === 0 ? (
+    <p>No commits yet</p>
+  ) : (
+    commit.map((timestamp, index) => (
+      <p key={index}>{new Date(timestamp).toLocaleString()}</p>
+    ))
+  )}
+</div>
+
     </div>
   );
 };
