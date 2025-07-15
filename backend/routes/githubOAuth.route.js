@@ -43,7 +43,7 @@ router.get("/github/callback", async (req, res) => {
   
       const access_token = tokenRes.data.access_token;
   
-      console.log(access_token)
+     // console.log(access_token)
       const encryptedToken = encrypt(access_token);
   
       // Fetch user profile

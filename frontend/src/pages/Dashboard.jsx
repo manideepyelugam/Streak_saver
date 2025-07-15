@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
-
+import GitHubCalendar from 'react-github-calendar';
 import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 
 const Dashboard = () => {
   const [searchParams] = useSearchParams();
@@ -73,22 +74,41 @@ const Dashboard = () => {
   if (!user) return <p>Loading user...</p>;
 
   return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
-      <h1>Welcome, {user.name || user.login} 👋</h1>
-      <img
-        src={user.avatar}
-        alt="Avatar"
-        style={{ borderRadius: "50%", width: "150px", marginTop: "1rem" }}
-      />
-      <p style={{ marginTop: "1rem" }}>GitHub: @{user.login}</p>
+    <div  className="bg-[#090909] text-[#f3f3f3] min-h-screen flex flex-col items-center justify-center">
 
-      <button onClick={() => logout()}>Logout</button>
+      <div className="flex items-center justify-between w-2/3 mt-14">
 
-      <button onClick={() => save()}>Start Saver</button>
+          <div className="flex flex-col items-start justify-normal mr-10">
+
+             <h1 className="font-medium tracking-tight text-5xl">Welcome, {user.name || user.login} </h1>
+             <p className="font-normal mt-3 text-[#c9c9c9]">GitHub: @{user.login}</p>
+
+             <div className="flex gap-5  items-start ">
+
+           <Button onClick={logout} text={"Logout"}/>
+           <Button onClick={save} text={"Start Saver"}/>
+      </div>
+
+          </div>
 
 
-      <div>
-  <h3>Recent Commits:</h3>
+             <img
+                src={user.avatar}
+                alt="Avatar"
+                style={{ borderRadius: "50%", width: "150px", marginTop: "1rem" }}
+              />
+
+
+
+      </div>
+
+     
+     
+     
+
+
+      <div className="w-3/4 ">
+  <h3 className="font-medium tracking-tight text-3xl">Recent Commits:</h3>
   {commit.length === 0 ? (
     <p>No commits yet</p>
   ) : (
@@ -98,7 +118,12 @@ const Dashboard = () => {
   )}
 </div>
 
-    </div>
+<GitHubCalendar  blockSize={15}
+  blockMargin={5}
+  fontSize={16}
+  showTotalCount username="manideepyelugam" />
+
+  </div>
   );
 };
 
