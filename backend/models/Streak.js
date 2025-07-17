@@ -1,14 +1,17 @@
 const mongoose = require("mongoose");
 
 const streakSchema = new mongoose.Schema({
-  userId: Number,
+  userId:  { type: Number, unique: true },
   startedAt: Date,
   expiresAt: Date,
   daysCompleted: Number,
   active: Boolean,
 
-  commitTimestamps: [String],
-}, {
+  commits: [{
+    timestamp: Date,
+    commitMessage: String
+  
+  }]}, {
   timestamps: true, // adds createdAt, updatedAt
 });
 

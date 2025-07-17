@@ -9,7 +9,7 @@ const Streak = require('../models/Streak');
 
 
 
-const scheduledUsers = new Set(); //  Track already scheduled users
+const scheduledUsers = new Map(); //  Track already scheduled users
 
 router.post('/:login', async (req, res) => {
   const user = await User.findOne({ login: req.params.login });
@@ -17,16 +17,23 @@ router.post('/:login', async (req, res) => {
 
 
 
-  const Streakk = await Streak.create({
-    userId : user.githubId,
-    startedAt : Date.now(),
-    expiresAt : Date.now()+ 15 * 24 * 60 * 60 * 1000,
-    daysCompleted : 0,
-    active : true
-  })
+  let Streakk = await Streak.findOne({ userId: user.githubId });
 
-  Streakk.save();
-
+  if (!Streakk) {
+    Streakk = await Streak.create({
+      userId: user.githubId,
+      startedAt: Date.now(),
+      expiresAt: Date.now() + 15 * 24 * 60 * 60 * 1000,
+      daysCompleted: 0,
+      active: true,
+      commits: []  // initialize commits array
+    });
+  }else{
+    Streakk.startedAt = new Date();
+    Streakk.expiresAt = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
+    Streakk.active = "true"
+    await Streakk.save();
+  }
 
   const login = user.login;
 
@@ -69,7 +76,10 @@ router.post('/:login', async (req, res) => {
       const sha = await getFileSHA();
       const timestamp = new Date().toISOString();
       const content = Buffer.from(`Updated at ${timestamp}\n`).toString('base64');
+      const streak = await Streak.findOne({ userId: user.githubId });
 
+
+      
       await axios.put(
         `${GITHUB_API}/contents/${FILE_PATH}`,
         {
@@ -86,13 +96,14 @@ router.post('/:login', async (req, res) => {
         }
       );
 
-      const streak = await Streak.findOne({ userId: user.githubId });
-      if (streak) {
-        streak.daysCompleted += 1;
-      
-        // To add a commit timestamp
-        streak.commitTimestamps.push(timestamp);
-      
+
+      if (streak) {   
+        streak.daysCompleted += 1,
+        streak.commits.push({
+          timestamp : timestamp,
+          commitMessage : `Auto commit at ${timestamp}`
+
+        })
         await streak.save();
       }
 
@@ -103,8 +114,8 @@ router.post('/:login', async (req, res) => {
   }
 
   // Schedule the cron job only once
-  cron.schedule('*/5 * * * *', commitToGitHub);
-  scheduledUsers.add(login); // Mark this user as scheduled
+  const job = cron.schedule('0 */6 * * *', commitToGitHub);
+  scheduledUsers.set(login,job); // Mark this user as scheduled
 
   res.json("Cron job scheduled for user: " + login);
 });
@@ -128,6 +139,37 @@ router.get("/:login/getUpdates", async(req,res) => {
 
     }
    
+})
+
+
+router.post("/:login/stop",async (req,res) => {
+  const login = req.params.login;
+  const job = scheduledUsers.get(login);
+
+
+  const user = await User.findOne({login : login});
+  if(!user) return res.json("user not found");
+
+
+  const streak = await Streak.findOne({userId : user.githubId});
+
+  if (job) {
+
+      job.stop();
+      scheduledUsers.delete(login);
+
+      if(streak){
+            streak.active = "false"
+      }
+
+      await streak.save();
+
+      return res.json(`Cron job stopped for ${login}`);
+  } else {
+      return res.status(404).json("No running cron job for this user.");
+  }
+
+
 })
 
 module.exports = router;
