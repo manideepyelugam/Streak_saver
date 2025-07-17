@@ -226,7 +226,7 @@ const Dashboard = () => {
 
 <ToastContainer position="top-center"
  theme="dark"  // optional built-in theme
-  toastStyle={{ background: '#46454573', color: '#7ed650', fontWeight: 'bold', width: window.innerWidth < 600 ? "90%" : "400px",
+  toastStyle={{ background: '#46454573', color: '#7ed650', width: window.innerWidth < 600 ? "90%" : "400px",
     fontSize: window.innerWidth < 600 ? "14px" : "16px",
     background: '#1a1a1a',
     color: '#7ed650',
