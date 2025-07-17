@@ -32,7 +32,7 @@ const LandingPage = () => {
       > <div className="bg-[#3aff04] lg:h-4 lg:w-4 h-3 w-3 rounded-sm mr-2.5"></div> Start Saving Streak</button>
 
 <a
-        href="/dashboard"
+        href="https://github.com/manideepyelugam/Streak_saver" target="_blank"
         className=" font-light mt-4 tracking-wide px-3 py-1.5 text-[12px] hover:bg-[#ececec] hover:text-black lg:px-4 lg:py-2 flex items-center flex-row rounded-lg shadow-custom transition text-sm lg:text-[15px]"
       > <i className="fa-solid fa-star mr-2"></i> Star this project</a>
 
