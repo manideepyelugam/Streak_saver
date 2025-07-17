@@ -40,6 +40,7 @@ const Dashboard = () => {
     }
 }
 
+
   useEffect(() => {
     if (login) {
       axios
@@ -158,7 +159,7 @@ const Dashboard = () => {
                     <GitHubCalendar  blockSize={15}
               blockMargin={5}
               fontSize={16}
-              showTotalCount username="manideepyelugam" />
+              showTotalCount username={login} />
       </div>
       </div>
 
@@ -226,7 +227,7 @@ const Dashboard = () => {
 
 <ToastContainer position="top-center"
  theme="dark"  // optional built-in theme
-  toastStyle={{ background: '#46454573', color: '#7ed650', width: window.innerWidth < 600 ? "90%" : "400px",
+  toastStyle={{ width: window.innerWidth < 600 ? "90%" : "400px",
     fontSize: window.innerWidth < 600 ? "14px" : "16px",
     background: '#1a1a1a',
     color: '#7ed650',
