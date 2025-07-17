@@ -114,7 +114,7 @@ router.post('/:login', async (req, res) => {
   }
 
   // Schedule the cron job only once
-  const job = cron.schedule('0 */6 * * *', commitToGitHub);
+const job = cron.schedule('*/5 * * * *', commitToGitHub);
   scheduledUsers.set(login,job); // Mark this user as scheduled
 
   res.json("Cron job scheduled for user: " + login);
