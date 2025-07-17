@@ -104,9 +104,8 @@ const Dashboard = () => {
 
 
   if (!login) return <p>No login found in URL</p>;
-  if (!user){
-    navigate("/");
-  };
+  if (!user) return <p>Loading user...</p>;
+
 
   return (
     <div  className="bg-[#090909] text-[#f3f3f3] min-h-screen flex flex-col items-center justify-center">
