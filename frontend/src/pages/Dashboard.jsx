@@ -171,7 +171,7 @@ const Dashboard = () => {
             <div className="sm:mt-5 mt-4 font-light text-[14px] flex flex-col gap-2 sm:text-[18px] tracking-wide text-[#ffffffc4]">
                   <p>1. Create a new repository with name <span className="text-[#7ed554] font-medium">auto_commit</span></p>
                   <p>2. Select the branch to  <span className="text-[#7ed554] font-medium">main</span></p>
-                  <p>3. Create a file with name  <span className="text-[#7ed554] font-medium">dummy_txt</span></p>
+                  <p>3. Create a file with name  <span className="text-[#7ed554] font-medium">dummy.txt</span></p>
             </div>
       </div>
      
