@@ -1,20 +1,18 @@
 // server/index.js
 require("dotenv").config(); // <-- Load env first
 const express = require("express");
-const axios = require("axios");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const User = require("./models/User");
-const { encrypt } = require("./utils/encryption");
-const { decrypt } = require("./utils/encryption");
-const Streak = require("./models/Streak");
 const githubOAuthRoutes = require("./routes/githubOAuth.route");
 const loginLogoutRoutes = require("./routes/login.logout.route");
 const startScheduleRoute = require('./routes/startSchedule.route');
 
+const port = process.env.PORT || 5000;
+
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 
 
 
@@ -38,4 +36,4 @@ app.get("/", (req, res) => {
 });
 
 
-app.listen(5000, () => console.log("Server running on http://localhost:5000"));
+app.listen(port, () => console.log(`Server running on ${port}`));
