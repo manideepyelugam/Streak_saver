@@ -186,7 +186,7 @@ const Streak = require("../models/Streak");
 const { decrypt } = require("../utils/encryption");
 
 // --- POST: Start Streak ---
-router.post("/start/:login", async (req, res) => {
+router.post("/:login", async (req, res) => {
   try {
     const user = await User.findOne({ login: req.params.login });
     if (!user) return res.status(404).json("Invalid user");

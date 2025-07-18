@@ -24,7 +24,7 @@ const Dashboard = () => {
       if(!login) console.log("User not logged in");
 
 
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/start/${login}/stop`)
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/start/stop/${login}`)
       .then((res) => {
             console.log("Job stopped successfully");
             toast("Job stopped successfully")
