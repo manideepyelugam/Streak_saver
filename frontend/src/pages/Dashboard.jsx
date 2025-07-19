@@ -26,8 +26,7 @@ const Dashboard = () => {
 
       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/start/stop/${login}`)
       .then((res) => {
-            console.log("Job stopped successfully");
-            toast("Job stopped successfully")
+            toast(res.data)
             setRefresh(prev => !prev); 
       })
       .catch((e) => {
@@ -41,14 +40,15 @@ const Dashboard = () => {
 }
 
 
-  useEffect(() => {
-    if (login) {
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/users/${login}`)
-        .then((res) => setUser(res.data))
-        .catch((err) => console.error("Failed to fetch user", err));
-    }
-  }, [login]);
+useEffect(() => {
+  if (login) {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/users/${login}`)
+      .then((res) => setUser(res.data))
+      .catch((err) => console.error("Failed to fetch user", err));
+  }
+}, [login]);
+
 
 
   useEffect(() => {
@@ -57,7 +57,6 @@ const Dashboard = () => {
         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/start/${login}/getUpdates`);
         setCommit(res.data.commits); // fixed: use res.data
         setProfileDetails(res.data)
-        console.log(res.data)
 
       } catch (err) {
         console.error("Failed to fetch commits", err);
@@ -71,7 +70,6 @@ const Dashboard = () => {
   const logout = () => {
         try {
           if(!login) console.log("User not logged in")
-            console.log(user.login)
 
           axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/logout/${user.login}`)
           .then((res) =>{ console.log("logged out success")
@@ -97,7 +95,7 @@ const Dashboard = () => {
 
     } catch (error) {
       console.log(error)
-      toast("Error in backend")
+      toast(error.response.data)
     }
   }
 
@@ -105,7 +103,12 @@ const Dashboard = () => {
 
 
   if (!login) return <p>No login found in URL</p>;
-  if (!user) return <p>Loading user...</p>;
+  if (!user) return <div className="h-screen w-full bg-[#090909] flex items-center flex-col gap-5 justify-center">
+    <div className="w-12 h-12 border-4 border-t-transparent border-[#7ed650] rounded-full animate-spin"></div>
+
+      <p className="text-white ">Loading user...</p>
+  </div>
+ 
 
 
   return (

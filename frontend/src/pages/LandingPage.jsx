@@ -13,8 +13,107 @@ const LandingPage = () => {
 
   return (
 
-    <div className="h-screen bg-[#040404] bg-[url('/Frame%208177.jpg')] flex items-center justify-center flex-col bg-cover bg-center">
-    <div className=" h-[98%] text-[#f5f5f5] flex flex-col items-center justify-center p-6">
+<div className="relative w-full h-screen overflow-hidden bg-[#040404] flex items-center justify-center flex-col bg-cover bg-center">
+
+<div className="absolute z-20 top-[-120px] left-[-300px] h-[700px] w-[700px] rounded-full 
+bg-[#868686] opacity-[0.30] blur-[422.8px]"></div>
+
+<div className="absolute z-20 top-[-120px] right-[-300px] h-[700px] w-[700px] rounded-full 
+bg-[#868686] opacity-[0.30] blur-[422.8px]"></div>
+
+
+<div className="absolute left-[91px] opacity-0 md:opacity-70 top-[170px] w-[139px] h-[138px] flex items-center justify-center">
+  
+  <div className="w-[8px] h-[8px] rounded-full bg-[#868686] z-10"></div>
+
+  <div
+  className="absolute w-[1px] h-[170px] rounded-full"
+  style={{
+    background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 25%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.25) 75%, rgba(255,255,255,0) 100%)'
+  }}
+></div>
+
+<div
+  className="absolute h-[1px] w-[170px]  rounded-full"
+  style={{
+    background: 'linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 25%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.25) 75%, rgba(255,255,255,0) 100%)'
+  }}
+></div>
+
+</div>
+
+<div className="absolute left-[350px] opacity-0 md:opacity-70 top-[470px] w-[139px] h-[138px] flex items-center justify-center">
+  
+  <div className="w-[8px] h-[8px] rounded-full bg-[#868686] z-10"></div>
+
+  <div
+  className="absolute w-[1px] h-[170px] rounded-full"
+  style={{
+    background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 25%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.25) 75%, rgba(255,255,255,0) 100%)'
+  }}
+></div>
+
+<div
+  className="absolute h-[1px] w-[170px]  rounded-full"
+  style={{
+    background: 'linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 25%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.25) 75%, rgba(255,255,255,0) 100%)'
+  }}
+></div>
+
+</div>
+
+
+
+
+<div className="absolute right-[350px] opacity-0 md:opacity-70 top-[20px] w-[139px] h-[138px] flex items-center justify-center">
+  
+  <div className="w-[8px] h-[8px] rounded-full bg-[#868686] z-10"></div>
+
+  <div
+  className="absolute w-[1px] h-[170px] rounded-full"
+  style={{
+    background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 25%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.25) 75%, rgba(255,255,255,0) 100%)'
+  }}
+></div>
+
+<div
+  className="absolute h-[1px] w-[170px]  rounded-full"
+  style={{
+    background: 'linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 25%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.25) 75%, rgba(255,255,255,0) 100%)'
+  }}
+></div>
+
+</div>
+
+
+
+<div className="absolute right-[350px] opacity-0 md:opacity-70 top-[620px] w-[139px] h-[138px] flex items-center justify-center">
+  
+  <div className="w-[8px] h-[8px] rounded-full bg-[#868686] z-10"></div>
+
+  <div
+  className="absolute w-[1px] h-[170px] rounded-full"
+  style={{
+    background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 25%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.25) 75%, rgba(255,255,255,0) 100%)'
+  }}
+></div>
+
+<div
+  className="absolute h-[1px] w-[170px]  rounded-full"
+  style={{
+    background: 'linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 25%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.25) 75%, rgba(255,255,255,0) 100%)'
+  }}
+></div>
+
+</div>
+
+
+
+
+
+
+
+<div className=" h-[98%] text-[#f5f5f5] z-10 flex flex-col items-center justify-center p-6">
 
 
       <div className="flex  flex-col items-center justify-between  h-[260px] lg:h-[230px]">
@@ -47,21 +146,23 @@ const LandingPage = () => {
     </div>
 
 
-<div className=" text-center pb-5 text-white/80 text-sm">
+<div className="absolute z-40 bottom-0 text-center pb-5 text-white/80 text-sm">
         Built with ❤️ by manideep, for developers.
       </div>
 
+      <div className="absolute bottom-[-2700px] h-[2950px] w-[3000px] rounded-full 
+bg-[#0A0A0A] border border-white/10 
+shadow-[inset_0px_4px_140.6px_rgba(128,128,128,0.67)] z-0">
+</div>
+
+
       </div>
+
 
 
   );
 };
 
-const FeatureCard = ({ title, description }) => (
-  <div className="bg-white/10 backdrop-blur p-6 rounded-2xl shadow-md hover:scale-105 transition">
-    <h2 className="text-2xl font-bold mb-2">{title}</h2>
-    <p className="text-white/90">{description}</p>
-  </div>
-);
+
 
 export default LandingPage;
