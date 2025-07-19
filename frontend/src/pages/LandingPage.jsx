@@ -15,11 +15,11 @@ const LandingPage = () => {
 
 <div className="relative w-full h-screen overflow-hidden bg-[#040404] flex items-center justify-center flex-col bg-cover bg-center">
 
-<div className="absolute z-20 top-[-120px] left-[-300px] h-[700px] w-[700px] rounded-full 
-bg-[#868686] opacity-[0.30] blur-[422.8px]"></div>
+<div className="absolute  z-20 top-[-120px] left-[-300px] h-[700px] w-[700px] rounded-full 
+bg-[#868686] opacity-0 md:opacity-[0.30] blur-[422.8px]"></div>
 
 <div className="absolute z-20 top-[-120px] right-[-300px] h-[700px] w-[700px] rounded-full 
-bg-[#868686] opacity-[0.30] blur-[422.8px]"></div>
+bg-[#868686] opacity-0 md:opacity-[0.30] blur-[422.8px]"></div>
 
 
 <div className="absolute left-[91px] opacity-0 md:opacity-70 top-[170px] w-[139px] h-[138px] flex items-center justify-center">
